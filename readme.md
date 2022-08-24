@@ -1,15 +1,20 @@
-Démarches :
+# Démarches :
 
-- vérifier s'il y a une clé primaire
-- vérifier si le champ est légitime et logique par rapport aux relations et aux autres entités
+Se renseigner sur la logique des comics
+
+## Entité :
+
+- vérifier si le champ est légitime et logique par rapport aux relations, aux autres entités et la logique métier
 - vérifier si le type de champ convient au nom du champ
 
-2 - Vérification Relation :
+## Relation :
 
-- vérifier la logique dans les 2 sens de la relation
-- vérifier si la relation peut être null (0,x)
+- vérifier la logique dans les 2 sens de la relation si elle correspond à la logique métier
+- vérifier si la relation peut être null (0,x) par rapport à la logique métier
 
-Choix :
+# Choix :
+
+## Règles de gestion :
 
 Un éditeur peut éditer entre 0 (lors de l'ajout d'un éditeur, il aura 0 comics attribué, il faudra ensuite le lier à un comics.) et n comics. (0,n)
 Un comics est édité par 1 (un comics à forcement un éditeur lors de l'ajout) et 1 seul éditeur. (1,1)
@@ -40,34 +45,34 @@ Un comics appartient à 1 (un comics appartient forcément à une collection.) e
 
 D'après mes recherches un comics n'appartient qu'à 1 collection, dans le cas où il pourrait en avoir 2 ou plus dans le futur, il faudrait ajouter une table jointure.
 
-Champs supprimés :
+## Champs supprimés :
 
 - NombreDeVolumes(Table : Series) : pour moi, ce champ correspond au nombre de comics contenus dans la série. Ce champ peut être calculé dans une requête (Exemple : SELECT COUNT(\*) FROM Comics WHERE Id_series = x)
 
-Champs modifiés :
+## Champs modifiés :
 
 - Les champs Resume (Table : Comics), Descriptif (Table : Series), Description (Table : Recompenses) sont passés de VARCHAR a TEXT : varchar a permet de stocker des textes court alors que text permet de stocker des textes longs, d'après le nom des champs, text correspond mieux et est plus futureproof.
 - Les champs AnneeParution (Table : Series) et AnneeObtenue (Table : Recompenses) sont passés de DATETIME à YEAR : le mois, le jour et l'heure ne sont pas nécessaires d'après le nom des champs.
 - Les champs PremiereApparition (Table : Personnages), DateParution (Table : Collections), DatePublication (Table : Comics) sont passés de DATETIME à DATE : l'heure n'est pas nécessaire d'après le nom des champs.
 
-Tables ajoutées :
+## Tables ajoutées :
 
-Dessinateurs :
+### Dessinateurs :
 
 Un dessinateur peut dessiner entre 0 (lors de l'ajout d'un dessinateur, il n'y a pas de comics attribué.) et n comics. (0,n)
 Un comics peut être dessiné par 1 et 1 seul dessinateur. (1,1)
 
 D'après mes recherches un comics n'a qu'un seul dessinateur, dans le cas où il pourrait en avoir 2 ou plus dans le futur, il faudrait ajouter une table jointure.
 
-Scénaristes :
+### Scénaristes :
 
 Un scénariste peut écrire entre 0 (lors de l'ajout d'un scénariste, il n'y a pas de comics attribué.) et n comics. (0,n)
 Un comics est écrit par 1 et 1 seul scénariste. (1,1)
 
 D'après mes recherches un comics n'a qu'un seul scénariste, dans le cas où il pourrait en avoir 2 ou plus dans le futur, il faudrait ajouter une table jointure.
 
-Autres observations :
+## Autres observations :
 
-Le champ "Statut" de la table "Personnages" : la définition de statut d'un personnage pour moi, c'est "mort" ou "vivant", si c'est bien la bonne définition, un personnage peut être vivant dans un comics et mort dans un autre, du coup, il faudrait mettre le statut du personnage dans la relation entre personnage et comics
+- Le champ "Statut" de la table "Personnages" : la définition de statut d'un personnage pour moi, c'est "mort" ou "vivant", si c'est bien la bonne définition, un personnage peut être vivant dans un comics et mort dans un autre, du coup, il faudrait mettre le statut du personnage dans la relation entre personnage et comics
 
-Le champ "Prestige" de la table "Collections" : la définition de prestige d'une collection pour moi, c'est un booléen qui dit si la collection est une collection prestige, si c'est bien la bonne définition, il faudrait changer le type du champ.
+- Le champ "Prestige" de la table "Collections" : la définition de prestige d'une collection pour moi, c'est un booléen qui dit si la collection est une collection prestige, si c'est bien la bonne définition, il faudrait changer le type du champ.
