@@ -54,7 +54,10 @@ D'après mes recherches un comics n'appartient qu'à 1 collection, dans le cas o
 
 ## Champs supprimés :
 
-- NombreDeVolumes(Table : Series) : pour moi, ce champ correspond au nombre de comics contenus dans la série. Ce champ peut être calculé dans une requête (Exemple : SELECT COUNT(\*) FROM Comics WHERE Id_series = x)
+- NombreDeVolumes(Table : Series) : pour moi, ce champ correspond au nombre de comics contenus dans la série. Ce champ peut être calculé dans une requête :
+```sql 
+SELECT COUNT(*) FROM Comics WHERE Id_series = x 
+``` 
 
 ## Champs modifiés :
 
